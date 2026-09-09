@@ -5,3 +5,54 @@
 @media(max-width:560px){.grid{grid-template-columns:1fr 1fr}.product{padding:14px}.trust{grid-template-columns:1fr}.service-grid,.policy-grid{grid-template-columns:1fr}.section{padding-top:55px;padding-bottom:55px}.section-head{align-items:start;flex-direction:column}footer{flex-direction:column}.hero-card{min-height:250px}}
 
 .whatsapp-link{color:var(--blue);font-weight:800;text-decoration:none}.whatsapp-link:hover{text-decoration:underline}
+.contact-link{
+color:var(--blue);
+font-weight:800;
+text-decoration:none;
+}
+
+.contact-link:hover{
+text-decoration:underline;
+}
+
+.social-links{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:8px;
+}
+
+.social{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:9px 13px;
+border:1px solid var(--line);
+border-radius:10px;
+background:#f7faff;
+color:var(--ink);
+text-decoration:none;
+font-size:12px;
+font-weight:700;
+transition:all .2s ease;
+}
+
+.social:hover{
+background:var(--blue);
+color:#fff;
+border-color:var(--blue);
+transform:translateY(-2px);
+}
+
+.whatsapp-link{
+color:var(--blue);
+font-weight:800;
+text-decoration:none;
+}
+
+.whatsapp-link:hover{
+text-decoration:underline;
+}
+
+
+
