@@ -226,99 +226,112 @@ const products = [
 const productsEl = document.getElementById("products");
 
 const phoneImages = {
-"iPhone 17 Pro Max": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_17_Pro_Max.jpg",
-"iPhone 16 Pro Max": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_16_Pro_Max_(54252176424).jpg",
-"iPhone 16 Pro": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_16_Pro_series.jpg",
-"iPhone 16 Plus": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_16.jpg",
-"iPhone 16": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_16.jpg",
-"iPhone 15 Pro Max": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_15_pro_max.jpg",
-"iPhone 15 Pro": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_15_pro_max.jpg",
-"iPhone 14 Pro Max": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_14_Pro_Max_20240225.jpg",
-"iPhone 14 Pro": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_14_Pro_Max_20240225.jpg",
-"iPhone 14": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_14.jpg",
-"iPhone 13 Pro Max": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_13_Pro_Max.jpg",
-"iPhone 13 Pro": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_13_Pro.jpg",
-"iPhone 13": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_13.jpg",
-"iPhone 12 Pro Max": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_12_Pro_Max.jpg",
-"iPhone 12 Pro": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_12_Pro.jpg",
-"iPhone 12": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_12.jpg",
-"iPhone 11 Pro Max": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_11_Pro_Max.jpg",
-"iPhone 11 Pro": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_11_Pro.jpg",
-"iPhone 11": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_11.jpg",
-"iPhone XS Max": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_XS_Max.jpg",
-"iPhone XR": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_XR.jpg",
-"iPhone X": "https://commons.wikimedia.org/wiki/Special:Redirect/file/IPhone_X.jpg"
+  "iPhone 17 Pro Max": "",
+  "iPhone 16 Pro Max": "",
+  "iPhone 16 Pro": "",
+  "iPhone 16 Plus": "",
+  "iPhone 16": "",
+  "iPhone 15 Pro Max": "",
+  "iPhone 15 Pro": "",
+  "iPhone 14 Pro Max": "",
+  "iPhone 14 Pro": "",
+  "iPhone 14": "",
+  "iPhone 13 Pro Max": "",
+  "iPhone 13 Pro": "",
+  "iPhone 13": "",
+  "iPhone 12 Pro Max": "",
+  "iPhone 12 Pro": "",
+  "iPhone 12": "",
+  "iPhone 11 Pro Max": "",
+  "iPhone 11 Pro": "",
+  "iPhone 11": "",
+  "iPhone XS Max": "",
+  "iPhone XR": "",
+  "iPhone X": ""
 };
 
 function whatsappMessage(model, storage, price) {
-const message =
-`Hello IYKFixitMobile, I am interested in the ${model} ${storage}. ` +
-`I saw it listed at ${price}. Is it available?`;
+  const message =
+    `Hello IYKFixitMobile, I am interested in the ${model} ${storage}. ` +
+    `I saw it listed at ${price}. Is it available?`;
 
-return `https://wa.me/2347034433010?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/2347034433010?text=${encodeURIComponent(message)}`;
 }
 
-function render(type="all") {
-productsEl.innerHTML = products
-.filter(p => type === "all" || p[3] === type)
-.map(p => {
-const model = p[0];
-const storage = p[1];
-const price = p[2];
-const condition = p[3];
-const image = phoneImages[model];
+function render(type = "all") {
+  const filteredProducts = products.filter(
+    p => type === "all" || p[3] === type
+  );
 
-```
-  return `
-    <article class="product">
+  productsEl.innerHTML = filteredProducts.map(p => {
+    const model = p[0];
+    const storage = p[1];
+    const price = p[2];
+    const condition = p[3];
+    const image = phoneImages[model];
 
-      <div class="product-top">
-        <span class="tag">${condition}</span>
-        <span>${storage}</span>
-      </div>
-
-      <div class="product-image">
-        <img
-          src="${image}"
-          alt="${model} ${storage}"
-          loading="lazy"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-        >
-
-        <div class="image-fallback">
-          <span></span>
+    const imageHTML = image
+      ? `
+        <div class="product-image">
+          <img
+            src="${image}"
+            alt="${model} ${storage}"
+            loading="lazy"
+          >
         </div>
-      </div>
+      `
+      : `
+        <div class="product-image">
+          <div class="image-fallback">
+            <span></span>
+          </div>
+        </div>
+      `;
 
-      <h3>${model}</h3>
+    return `
+      <article class="product">
 
-      <p>${storage}</p>
+        <div class="product-top">
+          <span class="tag">${condition}</span>
+          <span>${storage}</span>
+        </div>
 
-      <strong>${price}</strong>
+        ${imageHTML}
 
-      <a
-        class="mini"
-        href="${whatsappMessage(model, storage, price)}"
-        target="_blank"
-        rel="noopener"
-      >
-        Ask about this phone →
-      </a>
+        <h3>${model}</h3>
 
-    </article>
-  `;
-})
-.join("");
-```
+        <p>${storage}</p>
 
+        <strong>${price}</strong>
+
+        <a
+          class="mini"
+          href="${whatsappMessage(model, storage, price)}"
+          target="_blank"
+          rel="noopener"
+        >
+          Ask about this phone →
+        </a>
+
+      </article>
+    `;
+  }).join("");
 }
 
-document.querySelectorAll(".filter").forEach(btn => btn.addEventListener("click",()=>{
-  document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active"); render(btn.dataset.type);
-}));
+document.querySelectorAll(".filter").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter").forEach(b => {
+      b.classList.remove("active");
+    });
+
+    btn.classList.add("active");
+    render(btn.dataset.type);
+  });
+});
+
 render();
 </script>
+
 </body>
 </html>
 
