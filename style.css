@@ -147,6 +147,40 @@ font-size:11px;
 }
 }
 
+/* PROFESSIONAL HEADER LOGO */
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:var(--ink);
+}
+
+.brand-logo{
+  width:58px;
+  height:58px;
+  object-fit:contain;
+  display:block;
+  flex-shrink:0;
+}
+
+.brand-name{
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:-0.02em;
+}
+
+@media(max-width:560px){
+  .brand-logo{
+    width:48px;
+    height:48px;
+  }
+
+  .brand-name{
+    font-size:17px;
+  }
+}
 
 
 
